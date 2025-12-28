@@ -1,82 +1,60 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import heroShoe from "@/assets/hero-shoe.png";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen hero-gradient flex items-center overflow-hidden pt-20">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
-          <div className="space-y-8 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            <div className="space-y-4">
-              <p className="text-primary font-medium tracking-widest uppercase text-sm">
-                Premium Collection 2024
-              </p>
-              <h1 className="font-display text-5xl md:text-7xl font-bold leading-tight">
-                Step Into
-                <br />
-                <span className="text-gradient">Luxury</span>
-              </h1>
-              <p className="text-muted-foreground text-lg md:text-xl max-w-md leading-relaxed">
-                Handcrafted excellence meets modern design. Experience footwear that defines your style.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="xl">
-                Shop Now
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button variant="heroOutline" size="xl">
-                Explore Collection
-              </Button>
-            </div>
-
-            {/* Stats */}
-            <div className="flex gap-12 pt-8 border-t border-border/30">
-              <div>
-                <p className="font-display text-3xl font-bold text-foreground">250+</p>
-                <p className="text-muted-foreground text-sm">Unique Designs</p>
-              </div>
-              <div>
-                <p className="font-display text-3xl font-bold text-foreground">50K+</p>
-                <p className="text-muted-foreground text-sm">Happy Customers</p>
-              </div>
-              <div>
-                <p className="font-display text-3xl font-bold text-foreground">4.9</p>
-                <p className="text-muted-foreground text-sm">Average Rating</p>
-              </div>
-            </div>
+    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+      {/* Decorative brushstroke */}
+      <div className="absolute top-32 left-10 w-32 h-8 brushstroke hidden md:block" />
+      
+      <div className="container mx-auto px-6 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Name with decorative brackets */}
+          <div className="mb-16 animate-fade-up">
+            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-[0.1em] text-primary mb-4">
+              <span className="font-light">/</span>ПСИХОЛОГ<span className="font-light">/</span>
+            </h1>
           </div>
 
-          {/* Hero Image */}
-          <div className="relative flex justify-center items-center animate-fade-up" style={{ animationDelay: "0.4s" }}>
-            <div className="relative">
-              {/* Glow Effect */}
-              <div className="absolute inset-0 glow-shadow rounded-full blur-2xl scale-75" />
-              
-              {/* Shoe Image */}
-              <img
-                src={heroShoe}
-                alt="Premium Sneaker"
-                className="relative z-10 w-full max-w-2xl animate-float drop-shadow-2xl"
-              />
-            </div>
+          {/* Script tagline */}
+          <div className="mb-12 animate-fade-up delay-200">
+            <p className="font-script text-2xl md:text-3xl lg:text-4xl italic text-primary leading-relaxed">
+              Говорят, со мной легко и не страшно 
+              <br className="hidden md:block" />
+              говорить о сложном, встречаться с собой настоящим...
+            </p>
+          </div>
+
+          {/* Decorative frame with brushstroke */}
+          <div className="relative py-20 mb-12 animate-fade-up delay-300">
+            {/* Top-left corner */}
+            <div className="absolute top-0 left-1/4 w-px h-20 bg-foreground/20" />
+            <div className="absolute top-0 left-1/4 w-20 h-px bg-foreground/20" />
+            
+            {/* Bottom-right corner */}
+            <div className="absolute bottom-0 right-1/4 w-px h-20 bg-foreground/20" />
+            <div className="absolute bottom-0 right-1/4 w-20 h-px bg-foreground/20" />
+            
+            {/* Brushstroke accent */}
+            <div className="absolute top-10 right-1/4 w-24 h-6 brushstroke" />
+          </div>
+
+          {/* CTA Button */}
+          <div className="animate-fade-up delay-400">
+            <Button 
+              size="lg" 
+              className="text-sm tracking-[0.2em] px-10 py-6"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              ЗАПИСАТЬСЯ
+            </Button>
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-primary rounded-full mt-2" />
+      {/* Bottom navigation hint */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-fade-in delay-500">
+        <div className="flex flex-col items-center gap-2 text-muted-foreground">
+          <div className="w-px h-10 bg-muted-foreground/30" />
         </div>
       </div>
     </section>

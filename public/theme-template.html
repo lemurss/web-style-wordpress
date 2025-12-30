@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Психолог Аня Ван — онлайн консультации, клиент-центрированная терапия, помощь в кризисах и личностном росте">
+    <title>Аня Ван | Психолог онлайн</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           CSS VARIABLES - DESIGN TOKENS
+           ============================================ */
+        :root {
+            /* Colors */
+            --background: hsl(0, 0%, 100%);
+            --foreground: hsl(0, 0%, 20%);
+            --primary: hsl(350, 35%, 35%);
+            --primary-foreground: hsl(0, 0%, 100%);
+            --secondary: hsl(30, 20%, 96%);
+            --secondary-foreground: hsl(0, 0%, 20%);
+            --muted: hsl(30, 15%, 95%);
+            --muted-foreground: hsl(0, 0%, 45%);
+            --accent: hsl(350, 35%, 35%);
+            --border: hsl(30, 20%, 90%);
+            
+            /* Gradients */
+            --gradient-hero: linear-gradient(180deg, hsl(30, 20%, 98%) 0%, hsl(30, 15%, 95%) 100%);
+            --gradient-section: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(30, 20%, 98%) 100%);
+            
+            /* Shadows */
+            --shadow-soft: 0 4px 30px hsla(0, 0%, 0%, 0.05);
+            --shadow-card: 0 10px 40px hsla(0, 0%, 0%, 0.08);
+            
+            /* Typography */
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --font-script: 'Cormorant Garamond', serif;
+            
+            /* Spacing */
+            --container-max: 1200px;
+            --section-padding: 6rem;
+            --section-padding-mobile: 4rem;
+        }
+
+        /* ============================================
+           RESET & BASE STYLES
+           ============================================ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--foreground);
+            background-color: var(--background);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ============================================
+           UTILITIES
+           ============================================ */
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .text-center { text-align: center; }
+        .text-primary { color: var(--primary); }
+        .text-muted { color: var(--muted-foreground); }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+
+        .section-title span {
+            font-weight: 300;
+        }
+
+        .script-text {
+            font-family: var(--font-script);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--primary);
+        }
+
+        .soft-shadow {
+            box-shadow: var(--shadow-soft);
+        }
+
+        .card-shadow {
+            box-shadow: var(--shadow-card);
+        }
+
+        .brushstroke {
+            background: linear-gradient(135deg, hsl(0, 0%, 85%) 0%, hsl(0, 0%, 90%) 100%);
+            transform: rotate(-10deg);
+            opacity: 0.6;
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: hsla(0, 0%, 100%, 0.95);
+            backdrop-filter: blur(8px);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            letter-spacing: 0.2em;
+            color: var(--primary);
+        }
+
+        .nav {
+            display: none;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav a {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            color: var(--muted-foreground);
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            padding: 0.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--foreground);
+        }
+
+        @media (min-width: 1024px) {
+            .nav { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 5rem;
+            overflow: hidden;
+        }
+
+        .hero .brushstroke-decor {
+            position: absolute;
+            top: 8rem;
+            left: 2.5rem;
+            width: 8rem;
+            height: 2rem;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .hero .brushstroke-decor { display: block; }
+        }
+
+        .hero-content {
+            max-width: 56rem;
+            margin: 0 auto;
+            text-align: center;
+            padding: 5rem 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 span {
+            font-weight: 300;
+        }
+
+        @media (min-width: 768px) {
+            .hero h1 { font-size: 4.5rem; }
+        }
+
+        @media (min-width: 1024px) {
+            .hero h1 { font-size: 6rem; }
+        }
+
+        .hero-tagline {
+            font-family: var(--font-script);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--primary);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .hero-tagline { font-size: 1.875rem; }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-tagline { font-size: 2.25rem; }
+        }
+
+        .hero-frame {
+            position: relative;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .hero-frame::before,
+        .hero-frame::after {
+            content: '';
+            position: absolute;
+            background: hsla(0, 0%, 20%, 0.2);
+        }
+
+        .hero-frame::before {
+            top: 0;
+            left: 25%;
+            width: 1px;
+            height: 5rem;
+        }
+
+        .hero-frame .corner-h {
+            position: absolute;
+            top: 0;
+            left: 25%;
+            width: 5rem;
+            height: 1px;
+            background: hsla(0, 0%, 20%, 0.2);
+        }
+
+        .hero-frame .corner-bottom {
+            position: absolute;
+            bottom: 0;
+            right: 25%;
+            width: 1px;
+            height: 5rem;
+            background: hsla(0, 0%, 20%, 0.2);
+        }
+
+        .hero-frame .corner-bottom-h {
+            position: absolute;
+            bottom: 0;
+            right: 25%;
+            width: 5rem;
+            height: 1px;
+            background: hsla(0, 0%, 20%, 0.2);
+        }
+
+        .hero-frame .brushstroke-accent {
+            position: absolute;
+            top: 2.5rem;
+            right: 25%;
+            width: 6rem;
+            height: 1.5rem;
+        }
+
+        /* ============================================
+           BUTTONS
+           ============================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--primary-foreground);
+        }
+
+        .btn-primary:hover {
+            background: hsl(350, 35%, 30%);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--primary-foreground);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid hsla(350, 35%, 35%, 0.3);
+        }
+
+        .btn-ghost:hover {
+            background: hsla(350, 35%, 35%, 0.05);
+        }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        .about {
+            position: relative;
+            padding: var(--section-padding) 0;
+        }
+
+        .about .brushstroke-decor {
+            position: absolute;
+            top: 5rem;
+            right: 2.5rem;
+            width: 7rem;
+            height: 1.75rem;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .about .brushstroke-decor { display: block; }
+        }
+
+        .about-content {
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        .about-title {
+            margin-bottom: 4rem;
+        }
+
+        .about-body {
+            position: relative;
+        }
+
+        .about-body .line-decor {
+            position: absolute;
+            width: 1px;
+            height: 8rem;
+            background: hsla(0, 0%, 20%, 0.1);
+            display: none;
+        }
+
+        .about-body .line-decor.top {
+            top: -2.5rem;
+            left: -2.5rem;
+        }
+
+        .about-body .line-decor.bottom {
+            bottom: -2.5rem;
+            right: -2.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-body .line-decor { display: block; }
+        }
+
+        .about-quote {
+            font-family: var(--font-script);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--primary);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-quote { font-size: 1.875rem; }
+        }
+
+        .about-text {
+            color: hsla(0, 0%, 20%, 0.8);
+            line-height: 1.7;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-values {
+            padding-top: 2rem;
+        }
+
+        .about-values h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .about-values ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            color: hsla(0, 0%, 20%, 0.8);
+        }
+
+        .about-values li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .about-values li span.bullet {
+            color: var(--primary);
+            margin-top: 0.25rem;
+        }
+
+        /* ============================================
+           SERVICES SECTION
+           ============================================ */
+        .services {
+            padding: var(--section-padding) 0;
+            background: hsla(30, 15%, 95%, 0.3);
+        }
+
+        .services-content {
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        .services-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .services-header h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .services-header p {
+            color: hsla(0, 0%, 20%, 0.7);
+            max-width: 36rem;
+            margin: 0 auto;
+        }
+
+        .services-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .service-number {
+            font-family: var(--font-script);
+            font-size: 2.5rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .service-number { font-size: 3rem; }
+        }
+
+        .service-title {
+            font-size: 1.125rem;
+            color: hsla(0, 0%, 20%, 0.8);
+            padding-top: 0.75rem;
+        }
+
+        @media (min-width: 768px) {
+            .service-title { font-size: 1.25rem; }
+        }
+
+        .services-diploma {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        /* ============================================
+           APPROACH SECTION
+           ============================================ */
+        .approach {
+            position: relative;
+            padding: var(--section-padding) 0;
+        }
+
+        .approach .line-decor {
+            position: absolute;
+            top: 5rem;
+            left: 2.5rem;
+            width: 1px;
+            height: 10rem;
+            background: hsla(0, 0%, 20%, 0.1);
+            display: none;
+        }
+
+        .approach .brushstroke-decor {
+            position: absolute;
+            bottom: 5rem;
+            right: 2.5rem;
+            width: 7rem;
+            height: 1.75rem;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .approach .line-decor,
+            .approach .brushstroke-decor { display: block; }
+        }
+
+        .approach-content {
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        .approach-title {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .approach-intro {
+            color: hsla(0, 0%, 20%, 0.8);
+            font-size: 1.125rem;
+            line-height: 1.7;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .approach-question {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .approach-question { font-size: 1.875rem; }
+        }
+
+        .principles-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .principle-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .principle-item .bullet {
+            color: var(--primary);
+            margin-top: 0.25rem;
+        }
+
+        .principle-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .principle-desc {
+            color: hsla(0, 0%, 20%, 0.7);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           FORMAT SECTION
+           ============================================ */
+        .format {
+            padding: var(--section-padding) 0;
+            background: hsla(30, 15%, 95%, 0.3);
+        }
+
+        .format-content {
+            max-width: 48rem;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .format-title {
+            margin-bottom: 3rem;
+        }
+
+        .format-text {
+            font-family: var(--font-script);
+            font-size: 2.5rem;
+            font-style: italic;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .format-text { font-size: 3rem; }
+        }
+
+        @media (min-width: 1024px) {
+            .format-text { font-size: 3.75rem; }
+        }
+
+        .format-desc {
+            color: hsla(0, 0%, 20%, 0.7);
+            font-size: 1.125rem;
+            line-height: 1.7;
+            max-width: 36rem;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           CONDITIONS SECTION
+           ============================================ */
+        .conditions {
+            padding: var(--section-padding) 0;
+        }
+
+        .conditions-content {
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        .conditions-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .conditions-header h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .conditions-header p {
+            color: hsla(0, 0%, 20%, 0.7);
+        }
+
+        .recommendations-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .recommendations-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .recommendation-item h4 {
+            font-family: var(--font-display);
+            font-size: 1.125rem;
+            color: var(--foreground);
+            margin-bottom: 0.5rem;
+        }
+
+        .recommendation-item p {
+            color: hsla(0, 0%, 20%, 0.6);
+            line-height: 1.6;
+        }
+
+        .conditions-signature {
+            text-align: center;
+        }
+
+        .conditions-signature p {
+            font-family: var(--font-script);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--primary);
+        }
+
+        /* ============================================
+           REVIEWS SECTION
+           ============================================ */
+        .reviews {
+            padding: var(--section-padding) 0;
+            background: hsla(30, 15%, 95%, 0.3);
+        }
+
+        .reviews-content {
+            max-width: 56rem;
+            margin: 0 auto;
+        }
+
+        .reviews-title {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .reviews-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .reviews-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .review-card {
+            background: var(--background);
+            padding: 2rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .review-text {
+            color: hsla(0, 0%, 20%, 0.7);
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-author {
+            font-family: var(--font-display);
+            color: var(--primary);
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact {
+            padding: var(--section-padding) 0;
+        }
+
+        .contact-content {
+            max-width: 42rem;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-title {
+            margin-bottom: 3rem;
+        }
+
+        .contact-desc {
+            color: hsla(0, 0%, 20%, 0.7);
+            font-size: 1.125rem;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .contact-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        .contact-buttons .btn {
+            width: 100%;
+        }
+
+        @media (min-width: 640px) {
+            .contact-buttons .btn {
+                width: auto;
+            }
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer p {
+            font-family: var(--font-display);
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+            letter-spacing: 0.1em;
+        }
+
+        /* ============================================
+           MOBILE NAVIGATION
+           ============================================ */
+        .mobile-nav {
+            display: none;
+            padding: 2rem 0;
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .mobile-nav a {
+            font-size: 0.875rem;
+            letter-spacing: 0.2em;
+            color: var(--muted-foreground);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--primary);
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-nav { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">Аня Ван</a>
+                
+                <nav class="nav">
+                    <a href="#about">ОБО МНЕ</a>
+                    <a href="#services">ЗАПРОСЫ</a>
+                    <a href="#approach">МОЙ ПОДХОД</a>
+                    <a href="#format">ФОРМАТ ВСТРЕЧИ</a>
+                    <a href="#conditions">УСЛОВИЯ</a>
+                    <a href="#reviews">ОТЗЫВЫ</a>
+                    <a href="#contact">КОНТАКТЫ</a>
+                </nav>
+
+                <button class="mobile-menu-btn" onclick="toggleMenu()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="mobile-nav" id="mobileNav">
+                <div class="mobile-nav-inner">
+                    <a href="#about" onclick="toggleMenu()">ОБО МНЕ</a>
+                    <a href="#services" onclick="toggleMenu()">ЗАПРОСЫ</a>
+                    <a href="#approach" onclick="toggleMenu()">МОЙ ПОДХОД</a>
+                    <a href="#format" onclick="toggleMenu()">ФОРМАТ ВСТРЕЧИ</a>
+                    <a href="#conditions" onclick="toggleMenu()">УСЛОВИЯ</a>
+                    <a href="#reviews" onclick="toggleMenu()">ОТЗЫВЫ</a>
+                    <a href="#contact" onclick="toggleMenu()">КОНТАКТЫ</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="brushstroke-decor brushstroke"></div>
+            
+            <div class="hero-content animate-fade-up">
+                <h1><span>/</span>ПСИХОЛОГ<span>/</span></h1>
+                
+                <p class="hero-tagline animate-fade-up delay-200">
+                    Говорят, со мной легко и не страшно<br>
+                    говорить о сложном, встречаться с собой настоящим...
+                </p>
+                
+                <div class="hero-frame animate-fade-up delay-300">
+                    <div class="corner-h"></div>
+                    <div class="corner-bottom"></div>
+                    <div class="corner-bottom-h"></div>
+                    <div class="brushstroke-accent brushstroke"></div>
+                </div>
+                
+                <div class="animate-fade-up delay-400">
+                    <a href="#contact" class="btn btn-primary">ЗАПИСАТЬСЯ</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="about">
+            <div class="brushstroke-decor brushstroke"></div>
+            
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-title animate-fade-up">
+                        <h2 class="section-title"><span>/</span>ОБО МНЕ<span>/</span></h2>
+                    </div>
+                    
+                    <div class="about-body">
+                        <div class="line-decor top"></div>
+                        <div class="line-decor bottom"></div>
+                        
+                        <div class="animate-fade-up delay-200">
+                            <p class="about-quote">
+                                Говорят, со мной легко и не страшно говорить о сложном, 
+                                встречаться с собой настоящим...
+                            </p>
+                            
+                            <div class="about-text">
+                                <p>Я Анна Ван, практикующий психолог с опытом более 16 лет.</p>
+                                <p>
+                                    Если описать себя коротко, я — женщина, которая умеет чувствовать и понимать 
+                                    других, но при этом оставаться устойчивой и рациональной. Мне важна свобода, 
+                                    жизнь, люди и отношения — я ценю их и помогаю развивать это в своих клиентах.
+                                </p>
+                            </div>
+                            
+                            <div class="about-values">
+                                <h3>Вот что важно для меня в работе:</h3>
+                                <ul>
+                                    <li>
+                                        <span class="bullet">•</span>
+                                        <span>Я принимаю вас такими, какие вы есть</span>
+                                    </li>
+                                    <li>
+                                        <span class="bullet">•</span>
+                                        <span>Я всегда стараюсь понять и поддержать ваши чувства</span>
+                                    </li>
+                                    <li>
+                                        <span class="bullet">•</span>
+                                        <span>Я искренна и открыта в общении</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="services">
+            <div class="container">
+                <div class="services-content">
+                    <div class="services-header animate-fade-up">
+                        <h2 class="section-title">В ЧЕМ Я МОГУ ВАМ ПОМОЧЬ</h2>
+                        <p>
+                            Если вы сейчас внутри чувствуете, что запутались, переживаете сложные 
+                            эмоции или хотите лучше понять себя, я могу помочь
+                        </p>
+                    </div>
+                    
+                    <div class="services-list">
+                        <div class="service-item animate-fade-up">
+                            <span class="service-number">1.</span>
+                            <p class="service-title">Преодолеть последствия травм и кризисов</p>
+                        </div>
+                        <div class="service-item animate-fade-up delay-100">
+                            <span class="service-number">2.</span>
+                            <p class="service-title">Вернуть уверенность и повысить самооценку</p>
+                        </div>
+                        <div class="service-item animate-fade-up delay-200">
+                            <span class="service-number">3.</span>
+                            <p class="service-title">Найти выход из тупика (потеря смысла, неудовлетворенность)</p>
+                        </div>
+                        <div class="service-item animate-fade-up delay-300">
+                            <span class="service-number">4.</span>
+                            <p class="service-title">Настроить диалог в отношениях (партнер, семья, работа, с собой)</p>
+                        </div>
+                        <div class="service-item animate-fade-up delay-400">
+                            <span class="service-number">5.</span>
+                            <p class="service-title">Нарушения пищевого поведения</p>
+                        </div>
+                        <div class="service-item animate-fade-up delay-500">
+                            <span class="service-number">6.</span>
+                            <p class="service-title">Пережить развод/расставание с меньшими потерями</p>
+                        </div>
+                        <div class="service-item animate-fade-up">
+                            <span class="service-number">7.</span>
+                            <p class="service-title">Найти и принять себя (сепарация, самоопределение)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="services-diploma animate-fade-up delay-500">
+                        <button class="btn btn-ghost">Ознакомиться с дипломами</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- APPROACH SECTION -->
+        <section id="approach" class="approach">
+            <div class="line-decor"></div>
+            <div class="brushstroke-decor brushstroke"></div>
+            
+            <div class="container">
+                <div class="approach-content">
+                    <div class="approach-title animate-fade-up">
+                        <h2 class="section-title"><span>/</span>О МОЕМ ПОДХОДЕ<span>/</span></h2>
+                    </div>
+                    
+                    <p class="approach-intro animate-fade-up delay-100">
+                        Моя работа строится на принципах клиент-центрированной терапии
+                    </p>
+                    
+                    <h3 class="approach-question animate-fade-up delay-200">Что это значит для вас?</h3>
+                    
+                    <div class="principles-list">
+                        <div class="principle-item animate-fade-up delay-300">
+                            <span class="bullet">•</span>
+                            <div>
+                                <h4 class="principle-title">Принятие</h4>
+                                <p class="principle-desc">Я принимаю вас такими, какие вы есть, без осуждений и оценок. Это пространство, где можно быть собой</p>
+                            </div>
+                        </div>
+                        <div class="principle-item animate-fade-up delay-400">
+                            <span class="bullet">•</span>
+                            <div>
+                                <h4 class="principle-title">Эмпатия</h4>
+                                <p class="principle-desc">Я действительно слушаю и понимаю, что вы чувствуете. Даже если мы поступили бы по-разному, я поддержу ваши переживания</p>
+                            </div>
+                        </div>
+                        <div class="principle-item animate-fade-up delay-500">
+                            <span class="bullet">•</span>
+                            <div>
+                                <h4 class="principle-title">Конгруэнтность</h4>
+                                <p class="principle-desc">Я честна и открыта в работе, что создает атмосферу доверия и безопасности</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMAT SECTION -->
+        <section id="format" class="format">
+            <div class="container">
+                <div class="format-content">
+                    <div class="format-title animate-fade-up">
+                        <h2 class="section-title"><span>/</span>ФОРМАТ ВСТРЕЧИ<span>/</span></h2>
+                    </div>
+                    
+                    <p class="format-text animate-fade-up delay-100">Онлайн</p>
+                    
+                    <p class="format-desc animate-fade-up delay-200">
+                        Удобный способ получить необходимую помощь психолога без дополнительных 
+                        временных затрат на посещение кабинета
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONDITIONS SECTION -->
+        <section id="conditions" class="conditions">
+            <div class="container">
+                <div class="conditions-content">
+                    <div class="conditions-header animate-fade-up">
+                        <h2 class="section-title">Ознакомьтесь с условиями</h2>
+                        <p>Для комфортной и плодотворной работы с вами, я разработала условия</p>
+                    </div>
+                    
+                    <h3 class="recommendations-title animate-fade-up delay-100">
+                        РЕКОМЕНДАЦИИ К ПРОВЕДЕНИЮ ДИСТАНЦИОННОЙ СЕССИИ
+                    </h3>
+                    
+                    <div class="recommendations-list">
+                        <div class="recommendation-item animate-fade-up">
+                            <h4>Обеспечьте приватность</h4>
+                            <p>Уединитесь в таком месте, где Вас вряд ли подслушают или потревожат.</p>
+                        </div>
+                        <div class="recommendation-item animate-fade-up delay-100">
+                            <h4>Устройтесь удобно, но не слишком расслабленно</h4>
+                            <p>Лучше всего разместиться на удобном стуле или кресле. Не стоит лежать в кровати.</p>
+                        </div>
+                        <div class="recommendation-item animate-fade-up delay-200">
+                            <h4>Подготовьте необходимые мелочи</h4>
+                            <p>Поставьте коробку с салфетками рядом с собой. Если хотите, налейте себе стакан воды.</p>
+                        </div>
+                        <div class="recommendation-item animate-fade-up delay-300">
+                            <h4>Одежда имеет значение</h4>
+                            <p>Оденьтесь на сессию так, как оделись бы на нашу личную встречу.</p>
+                        </div>
+                        <div class="recommendation-item animate-fade-up delay-400">
+                            <h4>Минимизируйте отвлекающие факторы</h4>
+                            <p>Выключите или переведите в спящий режим все девайсы, кроме того, который используете для звонка.</p>
+                        </div>
+                        <div class="recommendation-item animate-fade-up delay-500">
+                            <h4>Выделите время до и после сессии</h4>
+                            <p>Постарайтесь оставить себе дополнительное время перед сессией и после нее.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="conditions-signature animate-fade-up">
+                        <p>Ваша Аня Ван</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section id="reviews" class="reviews">
+            <div class="container">
+                <div class="reviews-content">
+                    <div class="reviews-title animate-fade-up">
+                        <h2 class="section-title">ОТЗЫВЫ МОИХ КЛИЕНТОВ</h2>
+                    </div>
+                    
+                    <div class="reviews-grid">
+                        <div class="review-card animate-fade-up">
+                            <p class="review-text">
+                                "Аня помогла мне найти себя в сложный период жизни. Благодаря её поддержке я смогла преодолеть страхи и начать новую главу."
+                            </p>
+                            <p class="review-author">— Мария</p>
+                        </div>
+                        <div class="review-card animate-fade-up delay-100">
+                            <p class="review-text">
+                                "Очень комфортно и безопасно. Чувствуешь, что тебя слышат и понимают без осуждения."
+                            </p>
+                            <p class="review-author">— Андрей</p>
+                        </div>
+                        <div class="review-card animate-fade-up delay-200">
+                            <p class="review-text">
+                                "Работа с Аней изменила мой взгляд на отношения с близкими. Научилась понимать себя и других."
+                            </p>
+                            <p class="review-author">— Елена</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-title animate-fade-up">
+                        <h2 class="section-title"><span>/</span>С ЧЕГО НАЧАТЬ?<span>/</span></h2>
+                    </div>
+                    
+                    <p class="contact-desc animate-fade-up delay-100">
+                        Все просто: напишите мне! Первая встреча поможет нам познакомиться 
+                        и понять, как я могу быть полезной именно вам
+                    </p>
+                    
+                    <div class="contact-buttons animate-fade-up delay-200">
+                        <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                            </svg>
+                            WhatsApp
+                        </a>
+                        <a href="https://t.me/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                            </svg>
+                            Telegram
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>© 2025 Аня Ван • Психолог онлайн</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('mobileNav');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

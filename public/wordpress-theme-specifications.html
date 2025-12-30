@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordPress Theme Specifications - Психолог Аня Ван</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: hsl(350, 35%, 35%);
+            --primary-light: hsl(350, 35%, 45%);
+            --background: hsl(0, 0%, 100%);
+            --foreground: hsl(0, 0%, 20%);
+            --muted: hsl(30, 15%, 95%);
+            --muted-foreground: hsl(0, 0%, 45%);
+            --border: hsl(30, 20%, 90%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--foreground);
+            background: var(--background);
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: var(--muted-foreground);
+            margin-bottom: 3rem;
+            font-size: 0.9rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+        }
+        
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+        }
+        
+        h4 {
+            font-size: 1.1rem;
+            color: var(--foreground);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        code {
+            background: var(--muted);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85em;
+        }
+        
+        pre {
+            background: hsl(0, 0%, 15%);
+            color: hsl(0, 0%, 90%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+        
+        .color-swatch {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 5px 0;
+            padding: 8px 12px;
+            background: var(--muted);
+            border-radius: 6px;
+        }
+        
+        .color-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+        
+        .color-info {
+            font-size: 0.85rem;
+        }
+        
+        .color-name {
+            font-weight: 600;
+        }
+        
+        .color-value {
+            color: var(--muted-foreground);
+            font-family: monospace;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        th {
+            background: var(--muted);
+            font-weight: 600;
+        }
+        
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .card {
+            background: var(--muted);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .font-sample {
+            margin: 1rem 0;
+            padding: 1.5rem;
+            background: var(--muted);
+            border-radius: 8px;
+        }
+        
+        .font-display {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .font-body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        
+        .print-btn:hover {
+            background: var(--primary-light);
+        }
+        
+        @media print {
+            .print-btn {
+                display: none;
+            }
+            body {
+                padding: 20px;
+            }
+            pre {
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()">Скачать PDF / Печать</button>
+
+    <h1>WORDPRESS THEME SPECIFICATIONS</h1>
+    <p class="subtitle">Психолог Аня Ван — Design System Documentation</p>
+
+    <div class="section">
+        <h2>1. Color Palette</h2>
+        
+        <h3>Primary Colors</h3>
+        <div class="grid">
+            <div class="color-swatch">
+                <div class="color-box" style="background: hsl(350, 35%, 35%);"></div>
+                <div class="color-info">
+                    <div class="color-name">Primary (Burgundy)</div>
+                    <div class="color-value">HSL: 350, 35%, 35%<br>HEX: #8B4858</div>
+                </div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background: hsl(0, 0%, 100%);"></div>
+                <div class="color-info">
+                    <div class="color-name">Background</div>
+                    <div class="color-value">HSL: 0, 0%, 100%<br>HEX: #FFFFFF</div>
+                </div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background: hsl(0, 0%, 20%);"></div>
+                <div class="color-info">
+                    <div class="color-name">Foreground (Text)</div>
+                    <div class="color-value">HSL: 0, 0%, 20%<br>HEX: #333333</div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Secondary Colors</h3>
+        <div class="grid">
+            <div class="color-swatch">
+                <div class="color-box" style="background: hsl(30, 20%, 96%);"></div>
+                <div class="color-info">
+                    <div class="color-name">Secondary (Warm White)</div>
+                    <div class="color-value">HSL: 30, 20%, 96%<br>HEX: #F7F5F3</div>
+                </div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background: hsl(30, 15%, 95%);"></div>
+                <div class="color-info">
+                    <div class="color-name">Muted</div>
+                    <div class="color-value">HSL: 30, 15%, 95%<br>HEX: #F5F3F1</div>
+                </div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background: hsl(0, 0%, 45%);"></div>
+                <div class="color-info">
+                    <div class="color-name">Muted Foreground</div>
+                    <div class="color-value">HSL: 0, 0%, 45%<br>HEX: #737373</div>
+                </div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background: hsl(30, 20%, 90%);"></div>
+                <div class="color-info">
+                    <div class="color-name">Border</div>
+                    <div class="color-value">HSL: 30, 20%, 90%<br>HEX: #EBE7E3</div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Gradients</h3>
+        <pre><code>/* Hero Gradient */
+background: linear-gradient(180deg, hsl(30, 20%, 98%) 0%, hsl(30, 15%, 95%) 100%);
+
+/* Section Gradient */
+background: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(30, 20%, 98%) 100%);</code></pre>
+
+        <h3>Shadows</h3>
+        <pre><code>/* Soft Shadow */
+box-shadow: 0 4px 30px hsl(0, 0%, 0%, 0.05);
+
+/* Card Shadow */
+box-shadow: 0 10px 40px hsl(0, 0%, 0%, 0.08);</code></pre>
+    </div>
+
+    <div class="section">
+        <h2>2. Typography</h2>
+
+        <h3>Font Families</h3>
+        <pre><code>&lt;link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"&gt;</code></pre>
+
+        <div class="font-sample">
+            <h4>Display Font: Cormorant Garamond</h4>
+            <p class="font-display" style="font-size: 2rem;">ПСИХОЛОГ ОНЛАЙН</p>
+            <p class="font-display" style="font-size: 1.5rem; font-style: italic;">мой подход к консультированию</p>
+            <p style="color: var(--muted-foreground); font-size: 0.85rem; margin-top: 0.5rem;">Used for: Headings, Section Titles, Script/Italic Accents</p>
+        </div>
+
+        <div class="font-sample">
+            <h4>Body Font: Montserrat</h4>
+            <p class="font-body" style="font-size: 1rem;">Добро пожаловать на мой сайт. Я помогаю людям находить гармонию и понимание себя.</p>
+            <p style="color: var(--muted-foreground); font-size: 0.85rem; margin-top: 0.5rem;">Used for: Body Text, Navigation, Buttons</p>
+        </div>
+
+        <h3>Typography Scale</h3>
+        <table>
+            <tr>
+                <th>Element</th>
+                <th>Font</th>
+                <th>Size</th>
+                <th>Weight</th>
+                <th>Letter Spacing</th>
+            </tr>
+            <tr>
+                <td>H1 (Hero)</td>
+                <td>Cormorant Garamond</td>
+                <td>4rem - 6rem</td>
+                <td>300</td>
+                <td>0.3em</td>
+            </tr>
+            <tr>
+                <td>H2 (Section Title)</td>
+                <td>Cormorant Garamond</td>
+                <td>2rem - 2.5rem</td>
+                <td>400</td>
+                <td>0.15em</td>
+            </tr>
+            <tr>
+                <td>H3 (Subsection)</td>
+                <td>Cormorant Garamond</td>
+                <td>1.5rem</td>
+                <td>400</td>
+                <td>0.05em</td>
+            </tr>
+            <tr>
+                <td>Body</td>
+                <td>Montserrat</td>
+                <td>1rem (16px)</td>
+                <td>300-400</td>
+                <td>0.02em</td>
+            </tr>
+            <tr>
+                <td>Navigation</td>
+                <td>Montserrat</td>
+                <td>0.75rem</td>
+                <td>400</td>
+                <td>0.1em</td>
+            </tr>
+            <tr>
+                <td>Script/Italic</td>
+                <td>Cormorant Garamond Italic</td>
+                <td>1.25rem - 1.5rem</td>
+                <td>400</td>
+                <td>0.02em</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3. Spacing & Layout</h2>
+
+        <h3>Container</h3>
+        <pre><code>.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}</code></pre>
+
+        <h3>Section Padding</h3>
+        <pre><code>/* Desktop */
+padding: 6rem 0;  /* 96px */
+
+/* Mobile */
+padding: 4rem 0;  /* 64px */</code></pre>
+
+        <h3>Spacing Scale</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Usage</th>
+            </tr>
+            <tr><td>xs</td><td>4px</td><td>Tight spacing</td></tr>
+            <tr><td>sm</td><td>8px</td><td>Small gaps</td></tr>
+            <tr><td>md</td><td>16px</td><td>Default spacing</td></tr>
+            <tr><td>lg</td><td>24px</td><td>Section elements</td></tr>
+            <tr><td>xl</td><td>32px</td><td>Large gaps</td></tr>
+            <tr><td>2xl</td><td>48px</td><td>Section separation</td></tr>
+            <tr><td>3xl</td><td>64px</td><td>Major sections</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>4. Components</h2>
+
+        <h3>Header/Navigation</h3>
+        <pre><code>.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: hsla(0, 0%, 100%, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid hsl(30, 20%, 90%);
+}
+
+.nav-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: hsl(0, 0%, 20%);
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: hsl(350, 35%, 35%);
+}</code></pre>
+
+        <h3>Hero Section</h3>
+        <pre><code>.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, hsl(30, 20%, 98%) 0%, hsl(30, 15%, 95%) 100%);
+    padding-top: 80px; /* Header height */
+}
+
+.hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: hsl(350, 35%, 35%);
+    text-transform: uppercase;
+}
+
+/* Decorative Frame */
+.decorative-frame {
+    position: relative;
+    padding: 4rem;
+}
+
+.decorative-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    border-top: 1px solid hsl(350, 35%, 35%, 0.3);
+    border-left: 1px solid hsl(350, 35%, 35%, 0.3);
+}
+
+.decorative-frame::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    border-bottom: 1px solid hsl(350, 35%, 35%, 0.3);
+    border-right: 1px solid hsl(350, 35%, 35%, 0.3);
+}</code></pre>
+
+        <h3>Buttons</h3>
+        <pre><code>/* Primary Button */
+.btn-primary {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    background: hsl(350, 35%, 35%);
+    color: hsl(0, 0%, 100%);
+    border: 1px solid hsl(350, 35%, 35%);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: hsl(350, 35%, 35%);
+}
+
+/* Outline Button */
+.btn-outline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: hsl(350, 35%, 35%);
+    border: 1px solid hsl(350, 35%, 35%);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: hsl(350, 35%, 35%);
+    color: hsl(0, 0%, 100%);
+}</code></pre>
+
+        <h3>Section Title</h3>
+        <pre><code>.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: hsl(350, 35%, 35%);
+    text-align: center;
+    margin-bottom: 3rem;
+}</code></pre>
+
+        <h3>Review Card</h3>
+        <pre><code>.review-card {
+    background: hsl(0, 0%, 100%);
+    padding: 2rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 10px 40px hsl(0, 0%, 0%, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px hsl(0, 0%, 0%, 0.12);
+}
+
+.review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.125rem;
+    font-style: italic;
+    color: hsl(0, 0%, 45%);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.review-author {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: hsl(350, 35%, 35%);
+}</code></pre>
+
+        <h3>Numbered List (Services)</h3>
+        <pre><code>.service-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid hsl(30, 20%, 90%);
+}
+
+.service-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: hsl(350, 35%, 35%, 0.5);
+    line-height: 1;
+    min-width: 3rem;
+}
+
+.service-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: hsl(0, 0%, 20%);
+    line-height: 1.6;
+}</code></pre>
+    </div>
+
+    <div class="section">
+        <h2>5. Page Structure</h2>
+
+        <h3>Section Order</h3>
+        <ol>
+            <li><strong>Header</strong> - Fixed navigation with logo</li>
+            <li><strong>Hero</strong> - Full viewport with title and CTA</li>
+            <li><strong>About</strong> - "Обо мне" section with portrait</li>
+            <li><strong>Services</strong> - "В чем я могу вам помочь"</li>
+            <li><strong>Approach</strong> - "О моем подходе"</li>
+            <li><strong>Format</strong> - "Формат встречи"</li>
+            <li><strong>Conditions</strong> - "Ознакомьтесь с условиями"</li>
+            <li><strong>Reviews</strong> - "Отзывы моих клиентов"</li>
+            <li><strong>Contact</strong> - "С чего начать?" with social buttons</li>
+            <li><strong>Footer</strong> - Copyright and links</li>
+        </ol>
+
+        <h3>Section IDs for Navigation</h3>
+        <pre><code>#about
+#services
+#approach
+#format
+#conditions
+#reviews
+#contact</code></pre>
+    </div>
+
+    <div class="section">
+        <h2>6. Animations</h2>
+
+        <pre><code>/* Fade Up Animation */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Slide In Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Usage */
+.animate-fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-slide-in {
+    animation: slideIn 0.6s ease-out forwards;
+}
+
+/* Animation Delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* Default Transitions */
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);</code></pre>
+    </div>
+
+    <div class="section">
+        <h2>7. CSS Variables (Complete)</h2>
+
+        <pre><code>:root {
+    /* Colors */
+    --primary: 350 35% 35%;
+    --primary-foreground: 0 0% 100%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 20%;
+    --secondary: 30 20% 96%;
+    --secondary-foreground: 0 0% 20%;
+    --muted: 30 15% 95%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 350 35% 35%;
+    --accent-foreground: 0 0% 100%;
+    --border: 30 20% 90%;
+    --input: 30 20% 90%;
+    --ring: 350 35% 35%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 20%;
+
+    /* Border Radius */
+    --radius: 0.25rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(180deg, hsl(30 20% 98%) 0%, hsl(30 15% 95%) 100%);
+    --gradient-section: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(30 20% 98%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 30px hsl(0 0% 0% / 0.05);
+    --shadow-card: 0 10px 40px hsl(0 0% 0% / 0.08);
+
+    /* Fonts */
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+    --font-script: 'Cormorant Garamond', serif;
+}</code></pre>
+    </div>
+
+    <div class="section">
+        <h2>8. WordPress Implementation Notes</h2>
+
+        <h3>Recommended Theme Structure</h3>
+        <pre><code>theme-anya-van/
+├── style.css
+├── functions.php
+├── index.php
+├── front-page.php
+├── header.php
+├── footer.php
+├── page.php
+├── single.php
+├── archive.php
+├── 404.php
+├── template-parts/
+│   ├── hero.php
+│   ├── about.php
+│   ├── services.php
+│   ├── approach.php
+│   ├── format.php
+│   ├── conditions.php
+│   ├── reviews.php
+│   └── contact.php
+├── assets/
+│   ├── css/
+│   │   └── main.css
+│   ├── js/
+│   │   └── main.js
+│   └── images/
+└── inc/
+    ├── customizer.php
+    └── template-functions.php</code></pre>
+
+        <h3>Menu Registration (functions.php)</h3>
+        <pre><code>function anya_van_register_menus() {
+    register_nav_menus(array(
+        'primary' => __('Primary Menu', 'anya-van'),
+        'footer'  => __('Footer Menu', 'anya-van'),
+    ));
+}
+add_action('init', 'anya_van_register_menus');</code></pre>
+
+        <h3>Custom Post Types</h3>
+        <pre><code>// Reviews CPT
+register_post_type('review', array(
+    'labels' => array(
+        'name' => 'Отзывы',
+        'singular_name' => 'Отзыв',
+    ),
+    'public' => true,
+    'has_archive' => true,
+    'supports' => array('title', 'editor', 'custom-fields'),
+    'menu_icon' => 'dashicons-format-quote',
+));
+
+// Services CPT
+register_post_type('service', array(
+    'labels' => array(
+        'name' => 'Услуги',
+        'singular_name' => 'Услуга',
+    ),
+    'public' => true,
+    'has_archive' => true,
+    'supports' => array('title', 'editor', 'custom-fields'),
+    'menu_icon' => 'dashicons-heart',
+));</code></pre>
+
+        <h3>ACF Fields Recommendation</h3>
+        <ul>
+            <li><strong>Hero:</strong> Title, Subtitle, CTA Text, CTA Link</li>
+            <li><strong>About:</strong> Photo, Bio Text, Experience Years</li>
+            <li><strong>Contact:</strong> WhatsApp Number, Telegram Username</li>
+            <li><strong>Reviews:</strong> Author Name, Review Text, Date</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>9. Responsive Breakpoints</h2>
+
+        <pre><code>/* Mobile First Approach */
+
+/* Tablet */
+@media (min-width: 768px) {
+    .container { padding: 0 2rem; }
+    .hero-title { font-size: 4rem; }
+    .section { padding: 5rem 0; }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .container { max-width: 1200px; }
+    .hero-title { font-size: 6rem; }
+    .section { padding: 6rem 0; }
+    .nav { display: flex; }
+}
+
+/* Large Desktop */
+@media (min-width: 1280px) {
+    .container { padding: 0; }
+}</code></pre>
+
+        <h3>Mobile Navigation</h3>
+        <ul>
+            <li>Hamburger menu icon (3 lines)</li>
+            <li>Full-screen overlay on mobile</li>
+            <li>Slide-in animation from right</li>
+            <li>Close button (X) in top right</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>10. Content Reference</h2>
+
+        <h3>Navigation Items</h3>
+        <ul>
+            <li>ОБО МНЕ</li>
+            <li>ЗАПРОСЫ</li>
+            <li>МОЙ ПОДХОД</li>
+            <li>ФОРМАТ ВСТРЕЧИ</li>
+            <li>УСЛОВИЯ</li>
+            <li>ОТЗЫВЫ</li>
+            <li>КОНТАКТЫ</li>
+        </ul>
+
+        <h3>Hero Section</h3>
+        <ul>
+            <li>Title: /ПСИХОЛОГ/</li>
+            <li>Subtitle: мой подход к консультированию</li>
+            <li>CTA: ЗАПИСАТЬСЯ</li>
+        </ul>
+
+        <h3>Section Titles</h3>
+        <ul>
+            <li>ОБО МНЕ</li>
+            <li>В ЧЕМ Я МОГУ ВАМ ПОМОЧЬ</li>
+            <li>О МОЕМ ПОДХОДЕ</li>
+            <li>ФОРМАТ ВСТРЕЧИ</li>
+            <li>Ознакомьтесь с условиями</li>
+            <li>ОТЗЫВЫ МОИХ КЛИЕНТОВ</li>
+            <li>С ЧЕГО НАЧАТЬ?</li>
+        </ul>
+    </div>
+
+    <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--muted-foreground);">
+        <p>Generated from Lovable React App • Психолог Аня Ван Theme Specifications</p>
+    </footer>
+</body>
+</html>

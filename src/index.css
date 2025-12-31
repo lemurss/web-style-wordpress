@@ -24,8 +24,11 @@
     --muted: 30 15% 95%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 350 35% 35%;
+    --accent: 340 65% 55%;
     --accent-foreground: 0 0% 100%;
+    
+    --hero-bg: 0 0% 18%;
+    --hero-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;

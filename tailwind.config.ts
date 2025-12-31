@@ -16,7 +16,7 @@ export default {
       fontFamily: {
         display: ['Cormorant Garamond', 'serif'],
         body: ['Montserrat', 'sans-serif'],
-        script: ['Cormorant Garamond', 'serif'],
+        script: ['Marck Script', 'cursive'],
       },
       colors: {
         'hero-bg': 'hsl(var(--hero-bg))',

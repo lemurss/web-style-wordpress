@@ -2,59 +2,53 @@ import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      {/* Decorative brushstroke */}
-      <div className="absolute top-32 left-10 w-32 h-8 brushstroke hidden md:block" />
+    <section className="relative min-h-screen flex items-center bg-[hsl(var(--hero-bg))] pt-20 overflow-hidden">
+      {/* Decorative brushstroke top-right */}
+      <div className="absolute top-20 right-[55%] w-24 h-6 bg-white/60 rotate-[-15deg] hidden md:block" />
       
       <div className="container mx-auto px-6 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Name with decorative brackets */}
-          <div className="mb-16 animate-fade-up">
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-[0.1em] text-primary mb-4">
-              <span className="font-light">/</span>ПСИХОЛОГ<span className="font-light">/</span>
-            </h1>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Left side - Text content */}
+          <div className="text-left animate-fade-up">
+            <div className="mb-8">
+              <h1 className="font-display text-5xl md:text-7xl lg:text-[97px] tracking-[0.05em] text-[hsl(var(--hero-foreground))] leading-none mb-2">
+                ПСИХОЛОГ
+              </h1>
+              <p className="font-script text-4xl md:text-5xl lg:text-6xl text-accent italic ml-4 md:ml-8">
+                Аня Ван
+              </p>
+            </div>
+
+            {/* CTA Button */}
+            <div className="mt-16 animate-fade-up delay-300">
+              <Button 
+                variant="outline"
+                size="lg" 
+                className="text-sm tracking-[0.15em] px-10 py-6 border-[hsl(var(--hero-foreground))] text-[hsl(var(--hero-foreground))] bg-transparent hover:bg-[hsl(var(--hero-foreground))]/10 rounded-full"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Записаться на приём
+              </Button>
+            </div>
           </div>
 
-          {/* Script tagline */}
-          <div className="mb-12 animate-fade-up delay-200">
-            <p className="font-script text-2xl md:text-3xl lg:text-4xl italic text-primary leading-relaxed">
-              Говорят, со мной легко и не страшно 
-              <br className="hidden md:block" />
-              говорить о сложном, встречаться с собой настоящим...
-            </p>
-          </div>
-
-          {/* Decorative frame with brushstroke */}
-          <div className="relative py-20 mb-12 animate-fade-up delay-300">
-            {/* Top-left corner */}
-            <div className="absolute top-0 left-1/4 w-px h-20 bg-foreground/20" />
-            <div className="absolute top-0 left-1/4 w-20 h-px bg-foreground/20" />
+          {/* Right side - Photo placeholder with decorative frame */}
+          <div className="relative animate-fade-up delay-200">
+            {/* Decorative frame corners */}
+            <div className="absolute -top-4 -right-4 w-24 h-24 border-t border-r border-white/40" />
+            <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b border-l border-white/40" />
             
-            {/* Bottom-right corner */}
-            <div className="absolute bottom-0 right-1/4 w-px h-20 bg-foreground/20" />
-            <div className="absolute bottom-0 right-1/4 w-20 h-px bg-foreground/20" />
+            {/* Brushstroke decorations */}
+            <div className="absolute -top-2 right-8 w-20 h-5 bg-white/60 rotate-[-20deg]" />
+            <div className="absolute -bottom-2 left-8 w-16 h-4 bg-white/60 rotate-[15deg]" />
             
-            {/* Brushstroke accent */}
-            <div className="absolute top-10 right-1/4 w-24 h-6 brushstroke" />
+            {/* Photo placeholder */}
+            <div className="aspect-[3/4] bg-gradient-to-br from-gray-600 to-gray-800 relative">
+              <div className="absolute inset-0 flex items-center justify-center text-white/30 text-lg">
+                Фото
+              </div>
+            </div>
           </div>
-
-          {/* CTA Button */}
-          <div className="animate-fade-up delay-400">
-            <Button 
-              size="lg" 
-              className="text-sm tracking-[0.2em] px-10 py-6"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              ЗАПИСАТЬСЯ
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom navigation hint */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-fade-in delay-500">
-        <div className="flex flex-col items-center gap-2 text-muted-foreground">
-          <div className="w-px h-10 bg-muted-foreground/30" />
         </div>
       </div>
     </section>

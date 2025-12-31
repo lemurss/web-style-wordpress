@@ -19,6 +19,8 @@ export default {
         script: ['Cormorant Garamond', 'serif'],
       },
       colors: {
+        'hero-bg': 'hsl(var(--hero-bg))',
+        'hero-foreground': 'hsl(var(--hero-foreground))',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

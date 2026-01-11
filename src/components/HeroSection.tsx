@@ -10,11 +10,11 @@ const HeroSection = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left side - Text content */}
           <div className="text-left animate-fade-up">
-            <div className="mb-8">
+            <div className="mb-8 relative">
               <h1 className="font-display text-[60px] md:text-[77px] lg:text-[97px] tracking-[0.05em] text-[hsl(var(--hero-foreground))] leading-[1] font-semibold">
                 ПСИХОЛОГ
               </h1>
-              <p className="font-script text-[76px] md:text-[110px] lg:text-[127px] text-accent leading-[1.55] font-light ml-4 md:ml-20">
+              <p className="font-script text-[76px] md:text-[110px] lg:text-[127px] text-accent leading-[1] font-light absolute top-[0.3em] left-[0.5em] md:left-[1em] whitespace-nowrap">
                 Аня Ван
               </p>
             </div>
